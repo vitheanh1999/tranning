@@ -11,7 +11,17 @@ export const Wrapper = styled.div`
     align-items: center;  
     min-height: 300px;
 `;
-
+export const WrapperContent = styled.div`
+  width: calc(100% - 1em);
+  flex: 1;
+  overflow: auto;
+  overflow-y: overlay;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+`;
 export const ImgTop = styled.img`
     width: 25em;
     position: absolute;
@@ -76,15 +86,43 @@ export const SelectRegister = styled.div`
     padding:10px;
     cursor: pointer;
 `;
-export const Notify = styled.img`
-    width: 2.9em;
-    height: 3.3em;
+export const Notify = styled.div``;
+export const IconNotify = styled.img`
+    width: 1.9em;
+    height: 2.3em;
     position: absolute;
-    top: 1em;
-    right: 2em;
+    top: 2em;
+    right: 3em;
     cursor: pointer;
+    z-index: 1;
+    :hover{
+        -webkit-filter: opacity(75%);
+        filter: opacity(75%);
+    }
 `;
-
+export const CountNotify = styled.div`
+    min-width: 1.4em;
+    height: 1.4em;
+    background-color: #3095cb;
+    border-radius: 2.5em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+`
+export const NotifyNews = styled.div`
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 1em;
+  right: 1em;
+  background-color: ${props => (props.isShowAll ? '#000000c2' : '0000')};
+  width: ${props => props.width}em;
+  min-height: ${props => props.height}em;
+  max-height: 30%;
+  border-radius: 1em;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
 export const Describe = styled.div` 
    display: flex;
    justify-content: center;

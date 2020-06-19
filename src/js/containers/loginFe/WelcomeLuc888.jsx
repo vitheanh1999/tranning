@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
+import { log } from 'pusher-js';
 import {
-  Wrapper, ImgTop, ImgBottom, LoginMain, Logo, Option, SelectLogin, ImgLogin, H3, SelectRegister,
-  Notify, Describe, DescribeTitle, DescribeContent, LoginAction, Note, Top,
+  Wrapper,
+  ImgTop,
+  ImgBottom,
+  LoginMain,
+  Logo,
+  Option,
+  SelectLogin,
+  ImgLogin,
+  H3,
+  SelectRegister,
+  Notify,
+  IconNotify,
+  CountNotify,
+  Describe,
+  DescribeTitle,
+  DescribeContent,
+  LoginAction,
+  Note,
+  Top,
 } from '../../components/login/loginStyle';
 import images from '../../../assets/images';
 import FormLogin from './Login';
 import Register from '../register/Register';
+import ShowNotify from './ShowNotify';
 
 class Login extends Component {
   constructor(props) {
@@ -13,10 +32,12 @@ class Login extends Component {
     this.state = {
       isShowLogin: false,
       isShowRegister: false,
+      isShowNotify: false,
     };
     this.handleClickLogin = this.handleClickLogin.bind(this);
     this.handleClickRegister = this.handleClickRegister.bind(this);
     this.handleClickTop = this.handleClickTop.bind(this);
+    this.showNotify = this.handleClickLogin.bind(this);
   }
 
   handleClickLogin() {
@@ -41,12 +62,24 @@ class Login extends Component {
     });
   }
 
+  handleClickNotify() {
+    const { isShowNotify } = this.state;
+    this.setState({
+      isShowNotify: !isShowNotify,
+    });
+  }
+
+
   render() {
     let formLogin = null;
     if (this.state.isShowLogin) {
       formLogin = (
-        <div><FormLogin isShowLogin={this.handleClickLogin} {...this.props} />
-          <Top className="btn" onClick={this.handleClickTop}> TOP</Top>
+        <div>
+          <FormLogin isShowLogin={this.handleClickLogin} {...this.props} />
+          <Top className="btn" onClick={this.handleClickTop}>
+            {' '}
+            TOP
+          </Top>
         </div>
       );
     } else if (this.state.isShowRegister) {
@@ -88,17 +121,19 @@ class Login extends Component {
         {formLogin}
         <ImgTop src={images.imgTop} />
         <ImgBottom src={images.imgBottom} />
-        <Notify src={images.notify} />
+        <Notify onClick={() => this.handleClickNotify()}>
+          <IconNotify src={images.notify} />
+          <CountNotify>2</CountNotify>
+          <ShowNotify isShowNotify={this.state.isShowNotify} />
+        </Notify>
+
       </Wrapper>
     );
   }
 }
 
-Login.propTypes = {
-};
+Login.propTypes = {};
 
-Login.defaultProps = {
-
-};
+Login.defaultProps = {};
 
 export default Login;

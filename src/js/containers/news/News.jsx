@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import moment from "moment";
-import api from "../../services/api";
+import React, { Component, Fragment } from 'react';
+import moment from 'moment';
+import api from '../../services/api';
 import {
   ListContent,
   ListBox,
@@ -15,11 +15,11 @@ import {
   ModalLgHeader,
   ModalDetailTitle,
   ModalLgBody,
-} from "./newsStyles";
+} from './newsStyles';
 
 const linkifyContent = (text) => {
   if (!text) {
-    return "";
+    return '';
   }
   const dangerDom = (
     <div id="Contentxxx" dangerouslySetInnerHTML={{ __html: text }} />
@@ -87,7 +87,7 @@ class News extends Component {
                 </TitleContent>
                 <MainContent>{value.content_data[0].summary}</MainContent>
                 <DateContent>
-                  {moment(value.view_plan).format("YYYY-MM-DD")}
+                  {moment(value.view_plan).format('YYYY-MM-DD')}
                 </DateContent>
               </NewBox>
             ))}
@@ -100,19 +100,19 @@ class News extends Component {
             >
               <ModalLgHeader closeButton>
                 <label>
-                  {moment(dataModal.view_plan).format("YYYY-MM-DD h:mm")}
+                  {moment(dataModal.view_plan).format('YYYY-MM-DD h:mm')}
                 </label>
                 <p className="title">{dataModal.title}</p>
               </ModalLgHeader>
               <ModalLgBody>
                 {dataModal.content_data
                   ? dataModal.content_data.map((value, key) => (
-                      <ModalLgBody>
-                        <ModalDetailTitle>{value.summary}</ModalDetailTitle>
-                        <div>{linkifyContent(value.content)}</div>
-                      </ModalLgBody>
-                    ))
-                  : ""}
+                    <ModalLgBody>
+                      <ModalDetailTitle>{value.summary}</ModalDetailTitle>
+                      <div>{linkifyContent(value.content)}</div>
+                    </ModalLgBody>
+                  ))
+                  : ''}
               </ModalLgBody>
             </ModalLg>
           </GroupNew>
