@@ -33,6 +33,7 @@ class Login extends Component {
       isShowLogin: false,
       isShowRegister: false,
       isShowNotify: false,
+      listNews:[]
     };
     this.handleClickLogin = this.handleClickLogin.bind(this);
     this.handleClickRegister = this.handleClickRegister.bind(this);
@@ -69,7 +70,25 @@ class Login extends Component {
     });
   }
 
+  componentDidMount() {
+    this.fetchData();
+    console.log(this.state.listNews);
+    
+  }
 
+  fetchData() {
+    api
+      .create()
+      .fetchListNewsNotLogin({ perPage: 10, currentPage: 1 })
+      .then((res) => {
+        if (res.data) {
+          this.setState({
+            listNews: res.data.data,
+          });
+        }
+      })
+      .catch();
+  }
   render() {
     let formLogin = null;
     if (this.state.isShowLogin) {
@@ -122,8 +141,7 @@ class Login extends Component {
         <ImgTop src={images.imgTop} />
         <ImgBottom src={images.imgBottom} />
         <Notify onClick={() => this.handleClickNotify()}>
-          <IconNotify src={images.notify} />
-          <CountNotify>2</CountNotify>
+          <IconNotify><CountNotify>2</CountNotify></IconNotify>
           <ShowNotify isShowNotify={this.state.isShowNotify} />
         </Notify>
 

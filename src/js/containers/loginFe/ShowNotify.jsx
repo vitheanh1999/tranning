@@ -6,7 +6,6 @@ import Alert from '../../components/common/Alert/Alert';
 import {
   WrapperContent,
 } from '../../components/login/NotifyStyle';
-
 class ShowNotify extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,7 @@ class ShowNotify extends Component {
   renderNotify() {
     if (this.props.isShowNotify === true) {
       return (
-          <WrapperContent ></WrapperContent>
+          <WrapperContent ><News></News></WrapperContent>
       );
     }
   }

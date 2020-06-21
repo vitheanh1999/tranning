@@ -8,5 +8,6 @@ export const WrapperContent = styled.div`
     height:33em;
     width:22em;
     background: #000000d1;
-    border-radius:1em
+    border-radius:1em;
+    z-index: 10;
 `;

@@ -43,11 +43,10 @@ export const ImgBottom = styled.img`
 export const LoginMain = styled.div`
     width: 100%;
     height: 100%;
-    overflow: auto;
+    // overflow: auto;
     background-image: url(/img/shadow.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-
 `;
 
 export const LoginAction = styled.div`  
@@ -86,15 +85,28 @@ export const SelectRegister = styled.div`
     padding:10px;
     cursor: pointer;
 `;
-export const Notify = styled.div``;
-export const IconNotify = styled.img`
-    width: 1.9em;
+export const Notify = styled.div`
+    display: flex;
+    position: absolute;
+    -webkit-box-align: center;
+    align-items: center;
+    top: 0em;
+    right: 0em;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    border-radius: 1em;
+`;
+export const IconNotify = styled.div`
+    background-image: url(${images.notify});
+    width: 2em;
     height: 2.3em;
     position: absolute;
     top: 2em;
     right: 3em;
+    background-size: contain;
     cursor: pointer;
-    z-index: 1;
+    z-index:11;
     :hover{
         -webkit-filter: opacity(75%);
         filter: opacity(75%);
@@ -106,8 +118,12 @@ export const CountNotify = styled.div`
     background-color: #3095cb;
     border-radius: 2.5em;
     position: absolute;
-    bottom: 0;
+    top: 1em;
     right: 0;
+    z-index: 11;
+    text-align: center;
+    color: white;
+    
 `
 export const NotifyNews = styled.div`
   display: flex;
@@ -124,6 +140,8 @@ export const NotifyNews = styled.div`
   justify-content: flex-start;
 `;
 export const Describe = styled.div` 
+    background-image: url(/img/caroBackground.png);
+    background-repeat: repeat;
    display: flex;
    justify-content: center;
    align-items: center;
