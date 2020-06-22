@@ -74,7 +74,6 @@ class News extends Component {
   render() {
     const data = this.state.listNews;
     const { dataModal } = this.state;
-
     return (
       <ListContent>
         <ListBox>
@@ -83,7 +82,7 @@ class News extends Component {
               <NewBox onClick={() => this.open(value)}>
                 <TitleContent>
                   <Title>{value.title}</Title>
-                  <New>New</New>
+                  <New fontsize={1}>New</New>
                 </TitleContent>
                 <MainContent>{value.content_data[0].summary}</MainContent>
                 <DateContent>
@@ -106,7 +105,7 @@ class News extends Component {
               </ModalLgHeader>
               <ModalLgBody>
                 {dataModal.content_data
-                  ? dataModal.content_data.map((value, key) => (
+                  ? dataModal.content_data.map(value => (
                     <ModalLgBody>
                       <ModalDetailTitle>{value.summary}</ModalDetailTitle>
                       <div>{linkifyContent(value.content)}</div>

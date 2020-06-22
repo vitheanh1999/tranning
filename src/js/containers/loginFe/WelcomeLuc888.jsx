@@ -25,6 +25,7 @@ import images from '../../../assets/images';
 import FormLogin from './Login';
 import Register from '../register/Register';
 import ShowNotify from './ShowNotify';
+import api from '../../services/api';
 
 class Login extends Component {
   constructor(props) {
@@ -33,11 +34,13 @@ class Login extends Component {
       isShowLogin: false,
       isShowRegister: false,
       isShowNotify: false,
+      isShowAll: false,
+      listNotifies: [],
     };
     this.handleClickLogin = this.handleClickLogin.bind(this);
     this.handleClickRegister = this.handleClickRegister.bind(this);
     this.handleClickTop = this.handleClickTop.bind(this);
-    this.showNotify = this.handleClickLogin.bind(this);
+    this.handleClickNotify = this.handleClickNotify.bind(this);
   }
 
   handleClickLogin() {
@@ -69,9 +72,40 @@ class Login extends Component {
     });
   }
 
+  closeNotifyButton() {
+    const { isShowNotify } = this.state;
+    if (!isShowNotify) {
+      this.setState({
+        isShowAll: false,
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.fetchListNewsNotLogin();
+  }
+
+  fetchListNewsNotLogin() {
+    api
+      .create()
+      .fetchListNewsNotLogin({ perPage: 100, currentPage: 1 })
+      .then((res) => {
+        if (res.data) {
+          this.setState({
+            listNotifies: res.data.data,
+          });
+        }
+      })
+      .catch();
+  }
 
   render() {
     let formLogin = null;
+    const { listNotifies } = this.state;
+    let totalNotify = listNotifies.filter(item => item.is_new === true)
+      .length;
+    if (totalNotify > 9) totalNotify = '9+';
+    const { isShowAll } = this.state;
     if (this.state.isShowLogin) {
       formLogin = (
         <div>
@@ -121,12 +155,19 @@ class Login extends Component {
         {formLogin}
         <ImgTop src={images.imgTop} />
         <ImgBottom src={images.imgBottom} />
-        <Notify onClick={() => this.handleClickNotify()}>
-          <IconNotify src={images.notify} />
-          <CountNotify>2</CountNotify>
-          <ShowNotify isShowNotify={this.state.isShowNotify} />
+        <Notify
+          onClick={() => this.handleClickNotify()}
+          onBlur={event => this.closeNotifyButton(event)}
+        >
+          <IconNotify src={images.notify}>
+            <CountNotify>{totalNotify}</CountNotify>
+          </IconNotify>
+          <ShowNotify
+            id="New"
+            listNotifies={this.state.listNotifies}
+            isShowNotify={this.state.isShowNotify}
+          />
         </Notify>
-
       </Wrapper>
     );
   }

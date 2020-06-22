@@ -46,7 +46,7 @@ export const Title = styled.p`
 `;
 export const New = styled.a`
   color: aqua !important;
-  font-size: 1em;
+  font-size: ${props => props.fontsize}em;
   font-style: italic;
 `;
 export const MainContent = styled.div`
@@ -58,6 +58,7 @@ export const MainContent = styled.div`
   text-overflow: ellipsis;
   white-space: pre-wrap;
   min-height: 3em;
+  color: white;
 `;
 export const DateContent = styled.div`
   justify-content: flex-end;
