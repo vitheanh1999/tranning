@@ -5,6 +5,7 @@ import {
   TitleBox,
 
 } from '../../components/login/NotifyStyle';
+<<<<<<< HEAD
 import {
   ListBox,
   TitleContent,
@@ -27,6 +28,8 @@ const linkifyContent = (text) => {
   );
   return <Fragment>{dangerDom}</Fragment>;
 };
+=======
+>>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
 class ShowNotify extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +65,7 @@ class ShowNotify extends Component {
     const { dataModal } = this.state;
     if (this.props.isShowNotify === true) {
       return (
+<<<<<<< HEAD
         <WrapperContent
         onBlur={event => this.closeNotifyButton(event)}
         >
@@ -102,6 +106,9 @@ class ShowNotify extends Component {
             </ModalLg>
           </ListBox>
         </WrapperContent>
+=======
+          <WrapperContent ><News></News></WrapperContent>
+>>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
       );
     }
   }
