@@ -95,10 +95,7 @@ export const Notify = styled.div`
     -webkit-box-pack: start;
     justify-content: flex-start;
     border-radius: 1em;
-<<<<<<< HEAD
     
-=======
->>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
 `;
 export const IconNotify = styled.div`
     background-image: url(${images.notify});
@@ -122,11 +119,7 @@ export const CountNotify = styled.div`
     border-radius: 2.5em;
     position: absolute;
     top: 1em;
-<<<<<<< HEAD
     right: -0.1em;
-=======
-    right: 0;
->>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
     z-index: 11;
     text-align: center;
     color: white;

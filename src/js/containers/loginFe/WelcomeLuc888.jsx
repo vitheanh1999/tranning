@@ -34,12 +34,8 @@ class Login extends Component {
       isShowLogin: false,
       isShowRegister: false,
       isShowNotify: false,
-<<<<<<< HEAD
       isShowAll: false,
       listNotifies: [],
-=======
-      listNews:[]
->>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
     };
     this.handleClickLogin = this.handleClickLogin.bind(this);
     this.handleClickRegister = this.handleClickRegister.bind(this);
@@ -76,15 +72,6 @@ class Login extends Component {
     });
   }
 
-<<<<<<< HEAD
-  closeNotifyButton() {
-    const { isShowNotify } = this.state;
-    if (!isShowNotify) {
-      this.setState({
-        isShowAll: false,
-      });
-    }
-  }
 
   componentDidMount() {
     this.fetchListNewsNotLogin();
@@ -102,27 +89,8 @@ class Login extends Component {
         }
       })
       .catch();
-=======
-  componentDidMount() {
-    this.fetchData();
-    console.log(this.state.listNews);
-    
->>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
   }
 
-  fetchData() {
-    api
-      .create()
-      .fetchListNewsNotLogin({ perPage: 10, currentPage: 1 })
-      .then((res) => {
-        if (res.data) {
-          this.setState({
-            listNews: res.data.data,
-          });
-        }
-      })
-      .catch();
-  }
   render() {
     let formLogin = null;
     const { listNotifies } = this.state;
@@ -179,10 +147,8 @@ class Login extends Component {
         {formLogin}
         <ImgTop src={images.imgTop} />
         <ImgBottom src={images.imgBottom} />
-<<<<<<< HEAD
         <Notify
           onClick={() => this.handleClickNotify()}
-          onBlur={event => this.closeNotifyButton(event)}
         >
           <IconNotify src={images.notify}>
             <CountNotify>{totalNotify}</CountNotify>
@@ -192,11 +158,6 @@ class Login extends Component {
             listNotifies={this.state.listNotifies}
             isShowNotify={this.state.isShowNotify}
           />
-=======
-        <Notify onClick={() => this.handleClickNotify()}>
-          <IconNotify><CountNotify>2</CountNotify></IconNotify>
-          <ShowNotify isShowNotify={this.state.isShowNotify} />
->>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
         </Notify>
       </Wrapper>
     );

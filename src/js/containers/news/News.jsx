@@ -1,124 +1,117 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
-import api from '../../services/api';
-import {
-  ListContent,
-  ListBox,
-  NewBox,
-  TitleContent,
-  MainContent,
-  DateContent,
-  GroupNew,
-  Title,
-  New,
-  ModalLg,
-  ModalLgHeader,
-  ModalDetailTitle,
-  ModalLgBody,
-} from './newsStyles';
 
-const linkifyContent = (text) => {
-  if (!text) {
-    return '';
-  }
-  const dangerDom = (
-    <div id="Contentxxx" dangerouslySetInnerHTML={{ __html: text }} />
-  );
-  return <Fragment>{dangerDom}</Fragment>;
-};
+import {
+  Wrapper,
+  NewsBox,
+  NewsGroup,
+  NewsItem,
+  NewsItemTitle,
+  TitleContent,
+  TitleNew,
+  MainContent,
+  NewsDate,
+  ModalLg, ModalLgBody, ModalLgHeader, ModalLgTitle,
+  TaCardText, TaCardTitle, ModalDate,
+} from './newStyles';
+import api from '../../services/api';
+
+
 class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listNews: [],
       showModal: false,
-      dataModal: [],
+      listNews: [],
+      newDetail: [],
     };
+    this.close = this.close.bind(this);
+    this.open = this.open.bind(this);
   }
 
-  // componentWillMount() {
-  //   this.fetchData();
-  // }
+  // eslint-disable-next-line react/sort-comp
+  close() {
+    this.setState({ showModal: false });
+  }
+
+  open(obj) {
+    this.setState({
+      showModal: true,
+      newDetail: obj,
+    });
+  }
 
   componentDidMount() {
     this.fetchData();
   }
 
   fetchData() {
-    api
-      .create()
-      .fetchListNews({ perPage: 10, currentPage: 1 })
-      .then((res) => {
-        if (res.data) {
-          this.setState({
-            listNews: res.data.data,
-          });
-        }
-      })
-      .catch();
-  }
-
-  open(dataModal) {
-    this.setState({
-      showModal: true,
-      dataModal,
-    });
-  }
-
-  close() {
-    this.setState({
-      showModal: false,
-    });
+    api.create().fetchListNews({ perPage: 10, currentPage: 1 }).then((res) => {
+      if (res.data) {
+        this.setState({
+          listNews: res.data.data,
+        });
+      }
+    }).catch();
   }
 
   render() {
     const data = this.state.listNews;
-    const { dataModal } = this.state;
+    const { newDetail } = this.state;
     return (
-      <ListContent>
-        <ListBox>
-          <GroupNew>
-            {data.map((value, key) => (
-              <NewBox onClick={() => this.open(value)}>
-                <TitleContent>
-                  <Title>{value.title}</Title>
-                  <New fontsize={1}>New</New>
-                </TitleContent>
-                <MainContent>{value.content_data[0].summary}</MainContent>
-                <DateContent>
-                  {moment(value.view_plan).format('YYYY-MM-DD')}
-                </DateContent>
-              </NewBox>
-            ))}
+      <Wrapper>
+        <NewsBox>
+          <NewsGroup>
+            {
+              data.map(item => (
+                <NewsItem key={item.id} onClick={() => this.open(item)}>
+                  <NewsItemTitle>
+                    <TitleContent>{item.title}</TitleContent>
+                    <TitleNew>{item.is_new ? 'New' : ''}</TitleNew>
+                  </NewsItemTitle>
+                  <MainContent>{item.content_data[0].summary}</MainContent>
+                  <NewsDate>
+                    <span>{moment(item.view_plan).format('YYYY-MM-DD')}</span>
+                  </NewsDate>
+                </NewsItem>
+              ))
+            }
             <ModalLg
               size="lg"
               aria-labelledby="contained-modal-title-vcenter"
               show={this.state.showModal}
-              onHide={() => this.close()}
+              onHide={this.close}
               centered
             >
-              <ModalLgHeader closeButton>
-                <label>
-                  {moment(dataModal.view_plan).format('YYYY-MM-DD h:mm')}
-                </label>
-                <p className="title">{dataModal.title}</p>
-              </ModalLgHeader>
+              <ModalLgHeader closeButton />
               <ModalLgBody>
-                {dataModal.content_data
-                  ? dataModal.content_data.map(value => (
-                    <ModalLgBody>
-                      <ModalDetailTitle>{value.summary}</ModalDetailTitle>
-                      <div>{linkifyContent(value.content)}</div>
-                    </ModalLgBody>
-                  ))
-                  : ''}
+                <ModalDate><span>{moment(newDetail.view_plan).format('YYYY-MM-DD h:mm')}</span></ModalDate>
+                <ModalLgTitle>{newDetail.title}</ModalLgTitle>
               </ModalLgBody>
+
+              {
+                  newDetail.content_data
+                    ? newDetail.content_data.map(item => (
+                      <ModalLgBody key={item.id} className="main-body">
+                        <TaCardTitle>{item.summary}</TaCardTitle>
+                        <TaCardText>{item.content}</TaCardText>
+                      </ModalLgBody>
+                    ))
+                    : ''
+                }
             </ModalLg>
-          </GroupNew>
-        </ListBox>
-      </ListContent>
+          </NewsGroup>
+        </NewsBox>
+      </Wrapper>
     );
   }
 }
+
+News.propTypes = {
+};
+
+News.defaultProps = {
+
+};
 
 export default News;

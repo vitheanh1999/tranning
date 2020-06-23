@@ -152,6 +152,13 @@ export const WrapperList = styled.div`
   color: #fff;
 `;
 
+export const WrapperAction = styled.div`
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+`;
+
 export const WrapperListItem = styled.div`
   padding: 1em 2%;
   width: 100%;

@@ -3,21 +3,22 @@ import moment from 'moment';
 import {
   WrapperContent,
   TitleBox,
-
 } from '../../components/login/NotifyStyle';
-<<<<<<< HEAD
 import {
   ListBox,
   TitleContent,
   MainContent,
-  NewBox,
-  Title,
+  NewsItemTitle,
+  NewsItem,
+  TitleNew,
   ModalLg,
   ModalLgHeader,
   ModalLgBody,
-  ModalDetailTitle,
-  New,
-} from '../news/newsStyles';
+  TaCardTitle,
+  ModalDate,
+  ModalLgTitle,
+  TaCardText,
+} from '../news/newStyles';
 
 const linkifyContent = (text) => {
   if (!text) {
@@ -28,8 +29,6 @@ const linkifyContent = (text) => {
   );
   return <Fragment>{dangerDom}</Fragment>;
 };
-=======
->>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
 class ShowNotify extends Component {
   constructor(props) {
     super(props);
@@ -53,62 +52,56 @@ class ShowNotify extends Component {
     event.stopPropagation();
   }
 
-  close(event) {
-    console.log('close modal');
+  close() {
     this.setState({
       isShowModal: false,
     });
   }
 
+
   renderNotify() {
-    const data = this.props.listNotifies; 
+    const data = this.props.listNotifies;
     const { dataModal } = this.state;
     if (this.props.isShowNotify === true) {
       return (
-<<<<<<< HEAD
-        <WrapperContent
-        onBlur={event => this.closeNotifyButton(event)}
-        >
+        <WrapperContent>
           <TitleBox>NEWS</TitleBox>
           <ListBox>
-            {data.map(value => (
-              <NewBox onClick={event => this.open(event, value)}>
-                <TitleContent>
-                  <Title>{value.title}</Title>
-                  <New fontsize={0.7}>{value.is_new ? 'New' : ''}</New>
-                </TitleContent>
-                <MainContent>{value.content_data[0].summary}</MainContent>
-              </NewBox>
+            {data.map(item => (
+              <NewsItem onClick={event => this.open(event, item)}>
+                <NewsItemTitle>
+                  <TitleContent>{item.title}</TitleContent>
+                  <TitleNew fontsize={0.7}>{item.is_new ? 'New' : ''}</TitleNew>
+                </NewsItemTitle>
+                <MainContent>{item.content_data[0].summary}</MainContent>
+              </NewsItem>
             ))}
             <ModalLg
               size="lg"
               aria-labelledby="contained-modal-title-vcenter"
               show={this.state.isShowModal}
-              onHide={event => this.close(event)}
+              onHide={this.close}
               centered
             >
-              <ModalLgHeader closeButton>
-                <label>
-                  {moment(dataModal.view_plan).format('YYYY-MM-DD h:mm')}
-                </label>
-                <p className="title">{dataModal.title}</p>
-              </ModalLgHeader>
+              <ModalLgHeader closeButton />
               <ModalLgBody>
-                {dataModal.content_data
-                  ? dataModal.content_data.map(value => (
-                    <ModalLgBody>
-                      <ModalDetailTitle>{value.summary}</ModalDetailTitle>
-                      <div>{linkifyContent(value.content)}</div>
+                <ModalDate><span>{moment(dataModal.view_plan).format('YYYY-MM-DD h:mm')}</span></ModalDate>
+                <ModalLgTitle>{dataModal.title}</ModalLgTitle>
+              </ModalLgBody>
+
+              {
+                dataModal.content_data
+                  ? dataModal.content_data.map(item => (
+                    <ModalLgBody key={item.id} className="main-body">
+                      <TaCardTitle>{item.summary}</TaCardTitle>
+                      <TaCardText>{linkifyContent(item.content)}</TaCardText>
                     </ModalLgBody>
                   ))
-                  : ''}
-              </ModalLgBody>
+                  : ''
+              }
             </ModalLg>
           </ListBox>
         </WrapperContent>
-=======
-          <WrapperContent ><News></News></WrapperContent>
->>>>>>> 9d247d23fbe8f53e3eabe2f8b359ac29d942f3c1
       );
     }
   }

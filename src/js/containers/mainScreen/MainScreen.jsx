@@ -25,6 +25,7 @@ import MobileMenu from '../../components/menu/MobileMenu';
 import i18n from '../../i18n/i18n';
 import News from '../news/News';
 import ANT from '../antTab/ANT';
+import Campaign from '../campaign/Campaign';
 
 export const calculatorFontSize = () => {
   let screenWidth = window.innerWidth;
@@ -142,7 +143,6 @@ class MainScreen extends BaseContainer {
     const fontSize = calculatorFontSize();
     const checkLandscape = (orient === ORIENTATION.Landscape);
     let tab;
-
     switch (activeTab.value) {
       case TAB.DASHBOARD.value:
         tab = (
@@ -168,7 +168,7 @@ class MainScreen extends BaseContainer {
         break;
       case TAB.CAMPAIGN.value:
         tab = (
-          <div />
+          <Campaign />
         );
         break;
       case TAB.CHARGE.value:
