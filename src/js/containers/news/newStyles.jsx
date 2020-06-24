@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import images from '../../../assets/images';
 import { Modal, Card } from 'react-bootstrap';
+import images from '../../../assets/images';
 
 export const Wrapper = styled.div`
     background-image: url(${images.caroBackground});
@@ -27,7 +27,7 @@ export const NewsBox = styled.div`
     max-width: 90vw;
     margin-left: auto;
     margin-right: auto;
-`
+`;
 
 export const NewsGroup = styled.div`
     padding: 1em;
@@ -39,7 +39,7 @@ export const NewsGroup = styled.div`
     flex-shrink: 0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-`
+`;
 
 export const NewsItem = styled.div`
     cursor: pointer;
@@ -51,12 +51,12 @@ export const NewsItem = styled.div`
     :hover{
         background: #565050;
     }
-`
+`;
 
 export const NewsItemTitle = styled.div`
     display: flex;
     justify-content: space-between;
-`
+`;
 
 export const TitleContent = styled.div`
     display: inline-block;
@@ -69,7 +69,7 @@ export const TitleContent = styled.div`
     color: white;
     position: relative;
     padding-right: 0.5em;
-`
+`;
 
 export const TitleNew = styled.i`
     text-aligh:right
@@ -78,7 +78,7 @@ export const TitleNew = styled.i`
     vertical-align: top;
     content:'New';
     font-size:${props => props.fontsize}em;
-`
+`;
 
 export const MainContent = styled.div`
     width: 100%;
@@ -93,14 +93,14 @@ export const MainContent = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-`
+`;
 
 export const NewsDate = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
     -webkit-box-pack: end;
-`
+`;
 
 export const NewsDetail = styled.div`
     overflow-x: hidden;
@@ -113,7 +113,7 @@ export const NewsDetail = styled.div`
     height: 100%;
     overflow: hidden;
     outline: 0;
-`
+`;
 
 
 export const ModalLg = styled(Modal)`

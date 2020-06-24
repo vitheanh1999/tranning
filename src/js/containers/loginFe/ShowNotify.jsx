@@ -107,7 +107,7 @@ class ShowNotify extends Component {
   }
 
   render() {
-    return <div>{this.renderNotify()}</div>;
+    return this.renderNotify();
   }
 }
 

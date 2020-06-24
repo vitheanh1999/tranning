@@ -1,5 +1,5 @@
-import { Modal, ModalHeader } from 'reactstrap';
 import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
 import { SCREEN_SIZE } from '../../constants/screenSize';
 
 export const calculatorFontSize = () => {
@@ -178,17 +178,41 @@ export const SpanTotal = styled.span`
 `;
 
 export const ModalWrapper = styled(Modal)`
-  max-width: ${props => !props.isMobile && '80%'};
-
+  max-width: ${props => !props.isMobile && '100%'};
   > div {
     background-color: #333333;
     color: #fcfcfc;
   }
+  padding-left: 0!important;
+  font-size: 16px;
+  line-height: 1.6;
+  .modal-dialog{
+      max-width: 80%;
+  }
+  .modal-content{
+      background-color: #333333;
+      color: #fcfcfc;
+  }
+  #DetailModal{
+    background-color: #f1f0ff00;
+  }
 `;
 
-export const ModalHeaderCustom = styled(ModalHeader)`
-  button {
+export const ModalHeaderCustom = styled(ModalWrapper.Header)`
+  button{
     color: #fcfcfc;
+  }
+  button:hover{
+    color: #000;
   }
   background-color: ${props => (props.bgrColor ? props.bgrColor : '#00647a')};
 `;
+
+export const WrapperDetail = styled.div`
+  width: 100%;
+  height: 40em;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+`;
+

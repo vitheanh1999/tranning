@@ -21,6 +21,8 @@ class Campaign extends Component {
       totalCampaigns: null,
       isShowDetail: false,
       campaign: null,
+      listLogicPatterns: null,
+      listBetPatterns: null,
     };
     this.showCampaignDetail = this.showCampaignDetail.bind(this);
     this.closeCampaignDetail = this.closeCampaignDetail.bind(this);
@@ -28,6 +30,7 @@ class Campaign extends Component {
 
   componentDidMount() {
     this.fetchListCampaigns();
+    this.fetchListLogicPattern();
   }
 
   fetchListCampaigns() {
@@ -45,6 +48,22 @@ class Campaign extends Component {
       .catch();
   }
 
+  fetchListLogicPattern() {
+    api.create().fetchListLogicPattern({}).then((res) => {
+      this.setState({
+        listLogicPatterns: res.data,
+      });
+    });
+  }
+
+  fetchListBetPatterns() {
+    api.create().fetchListBetPattern({}).then((res) => {
+      this.setState({
+        listBetPatterns: res.data,
+      });
+    });
+  }
+
   showCampaignDetail(campaign) {
     this.setState({ isShowDetail: true, campaign });
   }
@@ -54,18 +73,24 @@ class Campaign extends Component {
   }
 
   renderDetailModal() {
-    const { isShowDetail, campaign } = this.state;
+    const {
+      isShowDetail, campaign, listLogicPatterns, listBetPatterns,
+    } = this.state;
     return (
       <ModalWrapper
         id="DetailModal"
-        isOpen={isShowDetail}
+        show={isShowDetail}
         centered
+        onHide={this.closeCampaignDetail}
       >
-        <ModalHeaderCustom toggle={this.closeCampaignDetail}>
+        <ModalHeaderCustom closeButton>
           {(campaign && campaign._id) ? 'Campaign Detail' : 'Add Campaign'}
         </ModalHeaderCustom>
         <CampaignDetail
           onClose={() => this.setState({ isShowDetail: false })}
+          campaignInfo={campaign}
+          listLogicPatterns={listLogicPatterns}
+          listBetPatterns={listBetPatterns}
         />
       </ModalWrapper>
     );

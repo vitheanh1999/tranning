@@ -93,12 +93,12 @@ class Login extends Component {
 
   render() {
     let formLogin = null;
-    const { listNotifies } = this.state;
+    const { listNotifies, isShowLogin, isShowNotify } = this.state;
     let totalNotify = listNotifies.filter(item => item.is_new === true)
       .length;
     if (totalNotify > 9) totalNotify = '9+';
     const { isShowAll } = this.state;
-    if (this.state.isShowLogin) {
+    if (isShowLogin) {
       formLogin = (
         <div>
           <FormLogin isShowLogin={this.handleClickLogin} {...this.props} />
@@ -153,11 +153,14 @@ class Login extends Component {
           <IconNotify src={images.notify}>
             <CountNotify>{totalNotify}</CountNotify>
           </IconNotify>
-          <ShowNotify
-            id="New"
-            listNotifies={this.state.listNotifies}
-            isShowNotify={this.state.isShowNotify}
-          />
+          {
+            isShowNotify && (
+              <ShowNotify
+                id="New"
+                listNotifies={this.state.listNotifies}
+                isShowNotify={this.state.isShowNotify}
+              />)
+          }
         </Notify>
       </Wrapper>
     );
