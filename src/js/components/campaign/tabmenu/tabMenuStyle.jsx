@@ -22,4 +22,7 @@ export const TabButton = styled.div`
     border-right: 1px #80808087;
     text-transform: capitalize;
     background-color: ${props => (props.selected ? '#000000e6' : '#333333')};
+    &:hover{
+      background-color: #6c757d;
+    }
 `

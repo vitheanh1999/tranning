@@ -21,8 +21,8 @@ class Campaign extends Component {
       totalCampaigns: null,
       isShowDetail: false,
       campaign: null,
-      listLogicPatterns: null,
-      listBetPatterns: null,
+      listLogicPatterns: [],
+      listBetPatterns: [],
     };
     this.showCampaignDetail = this.showCampaignDetail.bind(this);
     this.closeCampaignDetail = this.closeCampaignDetail.bind(this);
@@ -31,6 +31,7 @@ class Campaign extends Component {
   componentDidMount() {
     this.fetchListCampaigns();
     this.fetchListLogicPattern();
+    this.fetchListBetPatterns();
   }
 
   fetchListCampaigns() {
@@ -51,7 +52,7 @@ class Campaign extends Component {
   fetchListLogicPattern() {
     api.create().fetchListLogicPattern({}).then((res) => {
       this.setState({
-        listLogicPatterns: res.data,
+        listLogicPatterns: res.data ? res.data : [],
       });
     });
   }
@@ -59,7 +60,7 @@ class Campaign extends Component {
   fetchListBetPatterns() {
     api.create().fetchListBetPattern({}).then((res) => {
       this.setState({
-        listBetPatterns: res.data,
+        listBetPatterns: res.data ? res.data : [],
       });
     });
   }
@@ -84,7 +85,7 @@ class Campaign extends Component {
         onHide={this.closeCampaignDetail}
       >
         <ModalHeaderCustom closeButton>
-          {(campaign && campaign._id) ? 'Campaign Detail' : 'Add Campaign'}
+          {(campaign) ? 'Campaign Detail' : 'Add Campaign'}
         </ModalHeaderCustom>
         <CampaignDetail
           onClose={() => this.setState({ isShowDetail: false })}

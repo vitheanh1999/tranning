@@ -9,10 +9,6 @@ import addImg from '../../../assets/imgs/add.png';
 
 
 class ListCampaign extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderCampaign() {
     const { listCampaigns, showBotDetail } = this.props;
     const listCampaignItem = listCampaigns.map(item => (
@@ -46,5 +42,6 @@ class ListCampaign extends Component {
 ListCampaign.propTypes = {
   listCampaigns: PropTypes.array.isRequired,
   showBotDetail: PropTypes.func.isRequired,
+  totalCampaigns: PropTypes.any.isRequired,
 };
 export default ListCampaign;

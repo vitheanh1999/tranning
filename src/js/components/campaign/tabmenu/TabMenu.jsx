@@ -4,11 +4,11 @@ import { Wrapper, TabButton } from './tabMenuStyle';
 
 class TabMenu extends Component {
   renderTab(tab) {
-    const { onChangeTab, selectTedId } = this.props; 
+    const { onChangeTab, selecTedId } = this.props;
     return (
       <TabButton
+        selected={selecTedId === tab.id}
         onClick={() => onChangeTab(tab.id)}
-        selected={selectTedId === tab.id}
       >
         {tab.text}
       </TabButton>
@@ -26,12 +26,15 @@ class TabMenu extends Component {
     );
   }
 }
+
 TabMenu.defaultProps = {
   onChangeTab: () => {},
   selecTedId: 1,
 };
+
 TabMenu.propTypes = {
   onChangeTab: PropTypes.func,
+  tabs: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
   selecTedId: PropTypes.any,
 };
 export default TabMenu;

@@ -40,3 +40,8 @@ export const Row = styled.div`
 export const HelpWrapper = styled.div`
     width:60%;
 `;
+export const IconHelp = styled.img`
+  width: 1em;
+  margin-left: 0.5em;
+  cursor: pointer;
+`;

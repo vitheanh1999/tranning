@@ -13,13 +13,11 @@ class CampaignDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTabId: TABS[0].id,
+      selectedTabId: 1,
+      helpButton: false,
     };
     this.onChangeTab = this.onChangeTab.bind(this);
-  }
-
-  componentDidMount() {
-    this.onChangeTab();
+    this.selectedHelpButton = this.selectedHelpButton.bind(this);
   }
 
   onChangeTab(tabId) {
@@ -28,9 +26,16 @@ class CampaignDetail extends Component {
     });
   }
 
+  selectedHelpButton() {
+    this.setState({
+      helpButton: !this.state.helpButton,
+    });
+  }
+
   render() {
-    const { campaignInfo } = this.props;
-    const { selectedTabId } = this.state;
+    const { campaignInfo, listLogicPatterns, listBetPatterns } = this.props;
+    const { selectedTabId, helpButton } = this.state;
+
     return (
       <WrapperDetail>
         <TabMenu
@@ -42,6 +47,10 @@ class CampaignDetail extends Component {
             selectedTabId === TABS[0].id && (
             <TabBasicSetting
               campaignData={campaignInfo}
+              listLogicPatterns={listLogicPatterns}
+              listBetPatterns={listBetPatterns}
+              selectedHelpButton={this.selectedHelpButton}
+              helpButton={helpButton}
             />
             )
           }

@@ -59,8 +59,8 @@ export const ButtonAddCampaign = styled.div`
     border-radius: 0.3em;
     color: #fff;
     font-weight: 600;
-    &:hover{
-        background-color: #20bcdf;
+    &:hover {
+      background-color: #20bcdf;
     }
 `;
 

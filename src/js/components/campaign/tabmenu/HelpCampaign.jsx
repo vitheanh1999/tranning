@@ -5,7 +5,7 @@ class HelpCampaign extends Component {
   render() {
     return (
       <HelpWrapper >
-        Hepl Wrapper
+        Help Wrapper
       </HelpWrapper>
     );
   }
