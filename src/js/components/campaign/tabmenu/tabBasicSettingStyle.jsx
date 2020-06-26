@@ -38,7 +38,17 @@ export const Row = styled.div`
     
 `;
 export const HelpWrapper = styled.div`
-    width:60%;
+    display: flex;
+    flex-direction: column;
+    background-color: #cfdff50f;
+    flex: 1;
+    overflow: auto;
+    height: 30em;
+    margin: 1em;
+    padding-top: 0.5em;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    width: 60% ;
 `;
 export const IconHelp = styled.img`
   width: 1em;
