@@ -89,7 +89,9 @@ class TabBasicSetting extends Component {
             {this.createButtonHelp('pointRateAdaptation')}
           </Row>
         </Column>
-        <HelpCampaign />
+        <HelpCampaign 
+        fieldName={campaignData.profit_data.name}
+        />
       </Wrapper>
 
     );
