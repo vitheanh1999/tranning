@@ -15,19 +15,30 @@ class TabBasicSetting extends Component {
     this.props = props;
     this.state = {
       helpButton: false,
+      imageStatusHelp:images.iconHelpNormal
     };
     this.createButtonHelp = this.createButtonHelp.bind(this);
+  }
+
+  
+  selectedHelpButton(fieldName) {
+    this.setState({
+      helpButton: !this.state.helpButton,
+    });
   }
 
   createButtonHelp(fieldName) {
     // console.log(fieldName);
     const { selectedHelpButton, helpButton } = this.props;
     const image = helpButton === false ? images.iconHelpNormal : images.iconHelpSelected;
-    return (<IconHelp onClick={selectedHelpButton} src={image} />);
+    this.setState({
+      imageStatusHelp:images
+    })
   }
 
   render() {
     const { campaignData, listLogicPatterns, listBetPatterns } = this.props;
+    const imageStatusHelp=this.state
     const optionLogicPatterns = convertPatternCampaign(listLogicPatterns.data, campaignData.data.components[0], 'logic_pattern_name');
     const optionBetPatterns = convertPatternCampaign(listBetPatterns.data, campaignData.data.components[0], 'bet_pattern_name');
     return (
@@ -40,13 +51,13 @@ class TabBasicSetting extends Component {
               value={campaignData.name}
               name="name"
             />
-            {this.createButtonHelp('name')}
+            <IconHelp onClick={this.selectedHelpButton('name')} src={imageStatusHelp} />
           </Row>
           <Blank height={1} />
           <Row>
             <TitleGroup width={9}>{i18n.t('logicPattern')}</TitleGroup>
             {optionLogicPatterns.length > 0 ? <Dropdowm data={optionLogicPatterns} /> : ''}
-            {this.createButtonHelp('logicPattern')}
+            <IconHelp onClick={this.selectedHelpButton('logicPattern')} src={imageStatusHelp} />
           </Row>
           <Blank height={1} />
           <Row>
@@ -61,7 +72,7 @@ class TabBasicSetting extends Component {
             <Input
               value={campaignData.profit_data.max_profit}
             />
-            {this.createButtonHelp('maxProfit')}
+            <IconHelp onClick={this.selectedHelpButton('maxProfit')} src={imageStatusHelp} />
           </Row>
           <Blank height={0.5} />
           <Row>
@@ -69,7 +80,7 @@ class TabBasicSetting extends Component {
             <Input
               value={campaignData.profit_data.min_profit}
             />
-            {this.createButtonHelp('minProfit')}
+             <IconHelp onClick={this.selectedHelpButton('minProfit')} src={imageStatusHelp} />
           </Row>
           <Blank height={1} />
           <Row>
@@ -77,7 +88,7 @@ class TabBasicSetting extends Component {
             <Input
               value={campaignData.data.point_rate}
             />
-            {this.createButtonHelp('pointRate')}
+             <IconHelp onClick={this.selectedHelpButton('pointRate')} src={imageStatusHelp} />
           </Row>
           <Blank height={1} />
           <Row>
@@ -86,7 +97,7 @@ class TabBasicSetting extends Component {
               value={campaignData.data.point_rate * 10}
               disabled
             />
-            {this.createButtonHelp('pointRateAdaptation')}
+             <IconHelp onClick={this.selectedHelpButton('pointRateAdaptation')} src={imageStatusHelp} />
           </Row>
         </Column>
         <HelpCampaign 
