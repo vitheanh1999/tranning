@@ -6,6 +6,7 @@ import {
 import { ButtonAddCampaign, IconAdd } from './campaignStyle';
 import CampaignItemList from './CampaignItemList';
 import addImg from '../../../assets/imgs/add.png';
+import i18n from '../../i18n/i18n';
 
 
 class ListCampaign extends Component {
@@ -27,7 +28,7 @@ class ListCampaign extends Component {
         <ContentHeader>Total : {totalCampaigns}
           <ButtonAddCampaign>
             <IconAdd src={addImg} />
-            AddCampaign
+            {i18n.t('addCampaign')}
           </ButtonAddCampaign>
         </ContentHeader>
         <MedianStrip />

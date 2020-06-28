@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { WrapperDetail } from '../common/CommonStyle';
 import TabMenu from './tabmenu/TabMenu';
 import TabBasicSetting from './tabmenu/TabBasicSetting';
+import i18n from '../../../i18n/i18n';
 
 
 const TABS = [
@@ -26,11 +27,6 @@ class CampaignDetail extends Component {
     });
   }
 
-  selectedHelpButton() {
-    this.setState({
-      helpButton: !this.state.helpButton,
-    });
-  }
 
   render() {
     const { campaignInfo, listLogicPatterns, listBetPatterns } = this.props;
@@ -56,7 +52,7 @@ class CampaignDetail extends Component {
           }
         {
             selectedTabId === TABS[1].id && (
-            <div>advance</div>
+            <div>{i18n.t('advance')}</div>
             )
           }
       </WrapperDetail>

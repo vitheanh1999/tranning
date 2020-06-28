@@ -28,7 +28,7 @@ class CampaignItemList extends Component {
           height={2}
           onClick={onClickDetail}
         >
-          Edit
+          {i18n.t('edit')}
           <Image src={images} alt="" />
         </ButtonAction>
       </Fragment>
